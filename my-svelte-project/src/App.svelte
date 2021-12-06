@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	let name = 'Steven';
 	let surname = 'Svelte';
 	$: fullname = `${name} ${surname}`;
@@ -10,26 +10,73 @@
 	let renk = '';
 	
 
-	// const firstFunction = (event) => {
-	// 	renk = event.target.value;
-	// }
+	const firstFunction = (event) => {
+		renk = event.target.value;
+	}
 </script>
 
 <main>
-	<!-- <p style="color:{renk}">{name}</p>
+	<p style="color:{renk}">{name}</p> 
 	<input type='text' on:input={firstFunction}>
-	<input type="text" bind:value={renk}> -->
+	<input type="text" bind:value={renk}>
 
-	<!-- <p> {name} {surname} </p> -->
+	<p> {name} {surname} </p>
 	<p> {fullname} </p>
 	<input type="text" bind:value={name}>
 	<input type="text" bind:value={surname}>
 	
+</main> -->
+<script>
+import { each } from "svelte/internal";
+
+
+	let messages = [
+		{id: 0, from: 'x', to: 'y', message: "Hello y" },
+		{id: 1, from: 'xx', to: 'yy', message: "Hello yy" },
+		{id: 2, from: 'xxx', to: 'yyy', message: "Hello yyy" },
+		{id: 3, from: 'xxx', to: 'yyyy', message: "Hello yyyy" },
+	]
+
+	const clicked = () => {
+		messages = messages.splice(1);
+	}
+</script>
+
+<main>
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>FROM</td>
+				<td>TO</td>
+				<td>MESSAGE</td>
+			</tr>
+		</thead>
+		<tbody>
+			{#each messages as message }
+			<tr>
+				<td>{message.id}</td>
+				<td>{message.from}</td>
+				<td>{message.to}</td>
+				<td>{message.message}</td>
+			</tr>
+			{:else}
+			<tr>
+				<td colspan="4">No data vas not found</td>
+			</tr>
+			{/each}
+		</tbody>
+	</table>
+	<button on:click={clicked}>Delete</button>
 </main>
 
 <style>
 	main {
 		text-align: center;
+	}
+	table {
+		width: 100%;
+		padding: 20px;
 	}
 </style>
 
