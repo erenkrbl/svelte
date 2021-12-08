@@ -53,8 +53,11 @@ import { each } from "svelte/internal";
 			</tr>
 		</thead>
 		<tbody>
-			{#each messages as message }
-			<tr>
+			{#each messages as message (message.id)}
+			<tr
+			on:mousemove={() => {
+				messages = messages.filter((m) => m.id != message.id);
+			}}>
 				<td>{message.id}</td>
 				<td>{message.from}</td>
 				<td>{message.to}</td>
