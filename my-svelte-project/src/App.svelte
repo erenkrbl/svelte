@@ -27,59 +27,71 @@
 	
 </main> -->
 <script>
-import { each } from "svelte/internal";
+  import { each } from "svelte/internal";
 
+  let messages = [
+    { id: 0, from: "x", to: "y", message: "Hello y" },
+    { id: 1, from: "xx", to: "yy", message: "Hello yy" },
+    { id: 2, from: "xxx", to: "yyy", message: "Hello yyy" },
+    { id: 3, from: "xxx", to: "yyyy", message: "Hello yyyy" },
+  ];
 
-	let messages = [
-		{id: 0, from: 'x', to: 'y', message: "Hello y" },
-		{id: 1, from: 'xx', to: 'yy', message: "Hello yy" },
-		{id: 2, from: 'xxx', to: 'yyy', message: "Hello yyy" },
-		{id: 3, from: 'xxx', to: 'yyyy', message: "Hello yyyy" },
-	]
-
-	const clicked = () => {
-		messages = messages.splice(1);
-	}
+  const clicked = () => {
+    messages = messages.splice(1);
+  };
 </script>
 
 <main>
-	<table>
-		<thead>
-			<tr>
-				<td>ID</td>
-				<td>FROM</td>
-				<td>TO</td>
-				<td>MESSAGE</td>
-			</tr>
-		</thead>
-		<tbody>
-			{#each messages as message (message.id)}
-			<tr
-			on:mousemove={() => {
-				messages = messages.filter((m) => m.id != message.id);
-			}}>
-				<td>{message.id}</td>
-				<td>{message.from}</td>
-				<td>{message.to}</td>
-				<td>{message.message}</td>
-			</tr>
-			{:else}
-			<tr>
-				<td colspan="4">No data vas not found</td>
-			</tr>
-			{/each}
-		</tbody>
-	</table>
-	<button on:click={clicked}>Delete</button>
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>FROM</td>
+        <td>TO</td>
+        <td>MESSAGE</td>
+      </tr>
+    </thead>
+    <tbody>
+      {#each messages as message (message.id)}
+        {#if message.id === 1}
+          <tr>
+            <td>{message.id}</td>
+            <td>{message.from}</td>
+            <td>{message.to}</td>
+            <td>{message.message}</td>
+          </tr>
+		  {:else if message.id === 3}
+          <tr>
+            <td>{message.id}</td>
+            <td>{message.from}</td>
+            <td>{message.to}</td>
+            <td>{message.message}</td>
+          </tr>
+		  {:else}
+          <tr>
+            <td>............</td>
+            <td>............</td>
+            <td>............</td>
+            <td>............</td>
+          </tr>
+
+        {/if}
+      {:else}
+        <tr>
+          <td colspan="4">No data vas not found</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+  <button on:click={clicked}>Delete</button>
 </main>
 
 <style>
-	main {
-		text-align: center;
-	}
-	table {
-		width: 100%;
-		padding: 20px;
-	}
+  main {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    padding: 20px;
+  }
 </style>
-
