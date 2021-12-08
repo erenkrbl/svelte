@@ -1,32 +1,4 @@
 <!-- <script>
-	let name = 'Steven';
-	let surname = 'Svelte';
-	$: fullname = `${name} ${surname}`;
-	$: {
-		console.log(name);
-		console.log(surname);
-		console.log(fullname);
-	}
-	let renk = '';
-	
-
-	const firstFunction = (event) => {
-		renk = event.target.value;
-	}
-</script>
-
-<main>
-	<p style="color:{renk}">{name}</p> 
-	<input type='text' on:input={firstFunction}>
-	<input type="text" bind:value={renk}>
-
-	<p> {name} {surname} </p>
-	<p> {fullname} </p>
-	<input type="text" bind:value={name}>
-	<input type="text" bind:value={surname}>
-	
-</main> -->
-<script>
   import { each } from "svelte/internal";
 
   let messages = [
@@ -93,5 +65,59 @@
   table {
     width: 100%;
     padding: 20px;
+  }
+</style> -->
+<script>
+  import MyButtom from "./Button.svelte";
+  let appStatus = false;
+  let appSuccess = false;
+</script>
+
+<!-- <script>
+	let name = 'Steven';
+	let surname = 'Svelte';
+	$: fullname = `${name} ${surname}`;
+	$: {
+		console.log(name);
+		console.log(surname);
+		console.log(fullname);
+	}
+	let renk = '';
+	
+
+	const firstFunction = (event) => {
+		renk = event.target.value;
+	}
+</script>
+
+<main>
+	<p style="color:{renk}">{name}</p> 
+	<input type='text' on:input={firstFunction}>
+	<input type="text" bind:value={renk}>
+
+	<p> {name} {surname} </p>
+	<p> {fullname} </p>
+	<input type="text" bind:value={name}>
+	<input type="text" bind:value={surname}>
+	
+</main> -->
+
+<main>
+  <MyButtom show = {appStatus} success={appSuccess} />
+  <button
+    on:click={() => {
+      appSuccess = !appSuccess;
+    }}>Change Color</button
+  >
+  <button
+    on:click={() => {
+      appStatus = !appStatus;
+    }}>{appStatus ? "Disable" : "active"}</button
+  >
+</main>
+
+<style>
+  main {
+    text-align: center;
   }
 </style>
