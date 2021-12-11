@@ -131,9 +131,10 @@
   // let russian;
 
   let languages = []
+  let hairColor;
 
   const sendData = () => {
-    console.log(name, surname, age, email, languages)
+    console.log(name, surname, age, email, languages, hairColor)
   }
 </script>
 
@@ -164,6 +165,13 @@
       <div><input type="checkbox" bind:group={languages} value="english">English</div>
       <div><input type="checkbox" bind:group={languages} value="turkish">Turkish</div>
       <div><input type="checkbox" bind:group={languages} value="russian">Russian</div>
+      <div>
+        <select bind:value={hairColor}>
+          <option value="black">Black</option>
+          <option value="yellow">Yellow</option>
+          <option value="brown">Brown</option>
+        </select>
+      </div>
       <button>Add a user</button>
     </form>
     
