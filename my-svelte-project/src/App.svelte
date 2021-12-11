@@ -67,12 +67,12 @@
     padding: 20px;
   }
 </style> -->
-<script>
+<!-- <script>
   import MyButtom from "./Button.svelte";
   import Content from "./Content.svelte";
   let appStatus = false;
   let appSuccess = false;
-</script>
+</script> -->
 
 <!-- <script>
 	let name = 'Steven';
@@ -104,7 +104,7 @@
 </main> -->
 
 
-<main>
+<!-- <main>
   <MyButtom show = {appStatus} success={appSuccess} />
   <Content>
     <p>Slot</p>
@@ -119,14 +119,52 @@
       appStatus = !appStatus;
     }}>{appStatus ? "Disable" : "active"}</button
   >
-</main>
+</main> -->
+
+<script>
+  let name;
+  let surname;
+  let age;
+  let email;
+  // let english;
+  // let turkish;
+  // let russian;
+
+  let languages = []
+
+  const sendData = () => {
+    console.log(name, surname, age, email, languages)
+  }
+</script>
 
 <style>
   main {
     text-align: center;
   }
 
-  p {
-        color: red;
-    }
-</style>
+  label {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+  </style>
+  <main>
+    <form on:submit|preventDefault={sendData}>
+      <div><input type="text" placeholder="name" bind:value={name}></div>
+      <div><input type="text" placeholder="surname" bind:value={surname}></div>
+      <div><input type="number" placeholder="age" bind:value={age}></div>
+      <div><input type="email" placeholder="email" bind:value={email}></div>
+      <div><label>Languages</label></div>
+      <!-- <div><input type="checkbox" bind:checked={english}>English</div>
+      <div><input type="checkbox" bind:checked={turkish}>Turkish</div>
+      <div><input type="checkbox" bind:checked={russian}>Russian</div> -->
+      <div><input type="checkbox" bind:group={languages} value="english">English</div>
+      <div><input type="checkbox" bind:group={languages} value="turkish">Turkish</div>
+      <div><input type="checkbox" bind:group={languages} value="russian">Russian</div>
+      <button>Add a user</button>
+    </form>
+    
+  </main>
