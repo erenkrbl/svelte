@@ -69,6 +69,7 @@
 </style> -->
 <script>
   import MyButtom from "./Button.svelte";
+  import Content from "./Content.svelte";
   let appStatus = false;
   let appSuccess = false;
 </script>
@@ -102,8 +103,12 @@
 	
 </main> -->
 
+
 <main>
   <MyButtom show = {appStatus} success={appSuccess} />
+  <Content>
+    <p>Slot</p>
+  </Content>
   <button
     on:click={() => {
       appSuccess = !appSuccess;
@@ -120,4 +125,8 @@
   main {
     text-align: center;
   }
+
+  p {
+        color: red;
+    }
 </style>
